@@ -18,6 +18,24 @@ def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
 
     print('Connected to the db!')
 
+class User(db.Model):
+    """A user."""
+
+    __tablename__ = "users"
+
+    user_id = db.Column(db.Integer, 
+                        primary_key = True,
+                        autoincrement = True,)
+    email = db.Column(db.String,
+                        unique = True,
+                        nullable = False,)
+    password = db.Column(db.String,
+                        nullable = False,)
+    
+    def __repr__(self):
+
+        print(f"Username: {self.user_id} Email: {self.email}")
+
 
 if __name__ == '__main__':
     from server import app
