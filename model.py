@@ -30,10 +30,11 @@ class User(db.Model):
                         unique = True)
     password = db.Column(db.String)
     
+    #  ratings = a list of Rating objects (lives in ratings)
+
     def __repr__(self):
 
-        print(f"User user_id: {self.user_id},
-                    email: {self.email}")
+        return f"User user_id: {self.user_id} email: {self.email}"
 
 class Movie(db.Model):
     """A Movie."""
@@ -48,12 +49,15 @@ class Movie(db.Model):
     release_date = db.Column(db.DateTime)
     poster_path = db.Column(db.String)
 
+    #  ratings = a list of Rating objects (lives in ratings)
+
     def __repr__(self):
-        print(f"Movie movid_id: {self.movie_id}, 
-                title: {self.title},
-                overview: {self.overview},
-                release_date: {self.release_date},
-                poster_path: {self.poster_path}")
+        return f"""Movie movid_id: {self.movie_id} 
+                title: {self.title}
+                overview: {self.overview}
+                release_date: {self.release_date}
+                poster_path: {self.poster_path}"""
+
 
 
 class Rating(db.Model):
@@ -76,7 +80,7 @@ class Rating(db.Model):
 
     def __repr__(self):
 
-        print(f"Rating rating_id: {self.rating_id}, score: {self.score}")
+        return f"Rating rating_id: {self.rating_id}, score: {self.score}"
 
 
 if __name__ == '__main__':
