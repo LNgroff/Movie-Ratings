@@ -25,16 +25,58 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, 
                         primary_key = True,
-                        autoincrement = True,)
+                        autoincrement = True)
     email = db.Column(db.String,
-                        unique = True,
-                        nullable = False,)
-    password = db.Column(db.String,
-                        nullable = False,)
+                        unique = True)
+    password = db.Column(db.String)
     
     def __repr__(self):
 
-        print(f"Username: {self.user_id} Email: {self.email}")
+        print(f"User user_id: {self.user_id},
+                    email: {self.email}")
+
+class Movie(db.Model):
+    """A Movie."""
+
+    __tablename__ = "movies"
+
+    movie_id = db.Column(db.Integer,
+                        primary_key = True,
+                        autoincrement = True)
+    title = db.Column(db.String)
+    overview = db.Column(db.Text)
+    release_date = db.Column(db.DateTime)
+    poster_path = db.Column(db.String)
+
+    def __repr__(self):
+        print(f"Movie movid_id: {self.movie_id}, 
+                title: {self.title},
+                overview: {self.overview},
+                release_date: {self.release_date},
+                poster_path: {self.poster_path}")
+
+
+class Rating(db.Model):
+    """A rating."""
+
+    __tablename__ = "ratings"
+
+    rating_id = db.Column(db.Integer,
+                        primary_key = True,
+                        autoincrement = True)
+    score = db.Column(db.Integer)
+    movie_id = db.Column(db.Integer,
+                        db.ForeignKey("movies.movie_id"))
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey("users.user_id"))
+
+
+    movie = db.relationship('Movie', backref='ratings')
+    user = db.relationship('User', backref='ratings')
+
+    def __repr__(self):
+
+        print(f"Rating rating_id: {self.rating_id}, score: {self.score}")
 
 
 if __name__ == '__main__':
