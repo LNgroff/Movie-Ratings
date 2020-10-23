@@ -23,15 +23,15 @@ def create_movie(title, overview, release_date, poster_path):
 
     return movie
 
-def create_rating(email, password):
-    """Create and return a new user."""
+def create_rating(score, user, movie):
+    """Create and return a new rating."""
 
-    user = User(email=email, password=password)
+    rating = Rating(score=score, user=user, movie=movie)
 
-    db.session.add(user)
+    db.session.add(rating)
     db.session.commit()
 
-    return user
+    return rating
 
 
 
