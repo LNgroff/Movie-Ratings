@@ -23,6 +23,13 @@ def create_movie(title, overview, release_date, poster_path):
 
     return movie
 
+
+def return_all_movies():
+    """Get list of all movies"""
+
+    return Movie.query.all()
+
+
 def create_rating(score, user, movie):
     """Create and return a new rating."""
 
@@ -32,7 +39,6 @@ def create_rating(score, user, movie):
     db.session.commit()
 
     return rating
-
 
 
 if __name__ == '__main__':
