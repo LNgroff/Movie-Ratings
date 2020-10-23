@@ -19,7 +19,13 @@ def get_homepage():
 
     return render_template('homepage.html')
 
+@app.route('/movies')
+def show_all_movies():
+    """View all movies."""
 
+    movies = crud.return_all_movies()
+
+    return render_template('all_movies.html', movies=movies)
 
 
 
