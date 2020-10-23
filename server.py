@@ -27,6 +27,14 @@ def show_all_movies():
 
     return render_template('all_movies.html', movies=movies)
 
+@app.route('/movies/<movie_id>')
+def movie_details(movie_id):
+    """Show details on specific movies"""
+
+    movie = crud.get_movie_by_id(movie_id)
+
+
+    return render_template('movie_details.html', movie=movie)
 
 
 
